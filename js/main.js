@@ -145,3 +145,21 @@ if (form) {
     form.reset();
   });
 }
+
+
+/* ---------- Mobile menu ---------- */
+const menuBtn = document.getElementById("menu-btn");
+const navLinks = document.getElementById("nav-links");
+
+if (menuBtn && navLinks) {
+  const setOpen = open => {
+    navLinks.classList.toggle("open", open);
+    menuBtn.setAttribute("aria-expanded", open);
+    menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    menuBtn.innerHTML = open
+      ? '<i class="fa-solid fa-xmark"></i>'
+      : '<i class="fa-solid fa-bars"></i>';
+  };
+  menuBtn.addEventListener("click", () => setOpen(!navLinks.classList.contains("open")));
+  navLinks.addEventListener("click", e => { if (e.target.tagName === "A") setOpen(false); });
+}
